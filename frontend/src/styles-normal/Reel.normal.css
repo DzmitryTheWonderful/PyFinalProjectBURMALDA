@@ -1,0 +1,99 @@
+/* ОБЫЧНЫЙ ДИЗАЙН - BACKUP */
+/* Тёмные барабаны с золотыми рамками */
+
+.reel {
+  width: 140px;
+  height: 160px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+  border: 5px solid;
+  border-image: linear-gradient(180deg, #ffd700 0%, #b8860b 50%, #8b7500 100%) 1;
+  box-shadow: 
+    inset 0 10px 25px rgba(0, 0, 0, 0.8),
+    inset 0 -10px 25px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 215, 0, 0.4),
+    0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.reel::before,
+.reel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.reel::before {
+  top: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.95) 0%, transparent 100%);
+}
+
+.reel::after {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.95) 0%, transparent 100%);
+}
+
+.reel-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reel-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reel-strip.spinning {
+  animation: reelSpin 2s linear infinite;
+}
+
+.reel-symbol {
+  font-size: 5rem;
+  line-height: 1;
+  height: 160px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+.reel-symbol.final {
+  animation: symbolLand 0.4s ease-out;
+}
+
+@keyframes reelSpin {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1120px);
+  }
+}
+
+@keyframes symbolLand {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translateY(10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

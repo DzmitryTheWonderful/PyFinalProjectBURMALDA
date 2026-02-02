@@ -1,0 +1,87 @@
+.lever-container {
+  position: absolute;
+  right: -80px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lever-base {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 40px;
+  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+  border-radius: 8px;
+  border: 3px solid #ffd700;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.lever {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.1s ease;
+  transform-origin: bottom center;
+}
+
+.lever:hover:not(.disabled) .lever-ball {
+  box-shadow: 
+    0 0 30px rgba(255, 0, 0, 0.6),
+    2px 4px 15px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 15px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 15px rgba(255, 255, 255, 0.2);
+}
+
+.lever.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.lever-stick {
+  width: 14px;
+  height: 140px;
+  background: linear-gradient(90deg, #555 0%, #999 30%, #bbb 50%, #999 70%, #555 100%);
+  border-radius: 7px;
+  box-shadow: 
+    3px 3px 10px rgba(0, 0, 0, 0.4),
+    inset 1px 0 3px rgba(255, 255, 255, 0.3);
+  transform-origin: bottom center;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  margin-top: -10px;
+}
+
+.lever-ball {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 35% 35%, #ff6666 0%, #cc0000 40%, #800000 100%);
+  border-radius: 50%;
+  box-shadow: 
+    2px 4px 15px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 15px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 15px rgba(255, 255, 255, 0.2);
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  z-index: 2;
+}
+
+.lever-shine {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  width: 18px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.lever.pulled .lever-stick {
+  transform: rotate(35deg);
+}
+
+.lever.pulled .lever-ball {
+  transform: translateY(20px);
+}

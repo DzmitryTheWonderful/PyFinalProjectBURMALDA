@@ -1,0 +1,99 @@
+.reel {
+  width: 140px;
+  height: 160px;
+  background: #1a0a2e;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  border: 5px solid #ffd700;
+  box-shadow: 
+    inset -4px -4px 0 #0d0518,
+    inset 4px 4px 0 #2d1b4e,
+    -3px -3px 0 #ffd700,
+    3px 3px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    6px 0 0 #000, 6px 2px 0 #000, 6px 4px 0 #000, 6px 6px 0 #000,
+    0 6px 0 #000, 2px 6px 0 #000, 4px 6px 0 #000;
+}
+
+.reel::before,
+.reel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 40px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.reel::before {
+  top: 0;
+  background: linear-gradient(180deg, #1a0a2e 0%, transparent 100%);
+}
+
+.reel::after {
+  bottom: 0;
+  background: linear-gradient(0deg, #1a0a2e 0%, transparent 100%);
+}
+
+.reel-window {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.reel-strip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reel-strip.spinning {
+  animation: reelSpin 2s linear infinite;
+}
+
+.reel-symbol {
+  font-size: 5rem;
+  line-height: 1;
+  height: 160px;
+  min-height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(3px 3px 0 #000);
+  image-rendering: pixelated;
+}
+
+.reel-symbol.final {
+  animation: symbolLand 0.4s ease-out;
+}
+
+@keyframes reelSpin {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-1120px);
+  }
+}
+
+@keyframes symbolLand {
+  0% {
+    transform: translateY(-40px);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translateY(10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

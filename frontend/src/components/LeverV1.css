@@ -1,0 +1,76 @@
+.lever-v1-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lever-v1 {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.1s ease;
+}
+
+.lever-v1.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.lever-v1-ball {
+  width: 50px;
+  height: 50px;
+  background: radial-gradient(circle at 35% 35%, #ff6666 0%, #cc0000 40%, #800000 100%);
+  border-radius: 50%;
+  box-shadow: 
+    2px 4px 15px rgba(0, 0, 0, 0.5),
+    inset -3px -3px 15px rgba(0, 0, 0, 0.4),
+    inset 3px 3px 15px rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.lever-v1:hover:not(.disabled) .lever-v1-ball {
+  box-shadow: 
+    0 0 25px rgba(255, 0, 0, 0.6),
+    2px 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.lever-v1-shine {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  width: 15px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  transform: rotate(-30deg);
+}
+
+.lever-v1-stick {
+  width: 12px;
+  height: 80px;
+  background: linear-gradient(90deg, #555 0%, #999 30%, #bbb 50%, #999 70%, #555 100%);
+  border-radius: 6px;
+  margin-top: -5px;
+  transition: transform 0.3s ease;
+  transform-origin: top center;
+}
+
+.lever-v1-base {
+  width: 40px;
+  height: 25px;
+  background: linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 100%);
+  border-radius: 5px;
+  border: 2px solid #ffd700;
+  margin-top: -3px;
+}
+
+.lever-v1.pulled .lever-v1-ball {
+  transform: translateY(60px);
+}
+
+.lever-v1.pulled .lever-v1-stick {
+  transform: scaleY(0.3);
+}

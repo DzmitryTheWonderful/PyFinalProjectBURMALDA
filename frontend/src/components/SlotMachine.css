@@ -1,0 +1,402 @@
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+}
+
+.stats-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 120px;
+}
+
+.stat-box {
+  background: #2d1b4e;
+  border: 4px solid #ffd700;
+  border-radius: 0;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 
+    inset -4px -4px 0 #1a0a2e,
+    inset 4px 4px 0 #4a2c7a,
+    4px 0 0 #b8860b,
+    0 4px 0 #b8860b,
+    -4px 0 0 #b8860b,
+    0 -4px 0 #b8860b,
+    /* Сплошная чёрная тень справа-снизу */
+    8px 0 0 #000, 8px 2px 0 #000, 8px 4px 0 #000, 8px 6px 0 #000, 8px 8px 0 #000,
+    0 8px 0 #000, 2px 8px 0 #000, 4px 8px 0 #000, 6px 8px 0 #000;
+}
+
+.stat-label {
+  display: block;
+  color: #aaa;
+  font-size: 0.5rem;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  color: #00ff00;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 0 #004400;
+}
+
+.stat-value.jackpot-stat {
+  color: #ffd700;
+  text-shadow: 2px 2px 0 #806800;
+}
+
+.stats-right {
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.win-streak-floating {
+  position: absolute;
+  top: -40px;
+  right: -120px;
+  color: #00ff00;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-shadow: 3px 3px 0 #004400;
+  transform: rotate(15deg);
+  animation: streakBounce 0.4s ease-in-out infinite;
+  white-space: nowrap;
+  z-index: 100;
+  background: #1a0a2e;
+  padding: 10px 20px;
+  border: 4px solid #00ff00;
+  border-radius: 0;
+  box-shadow: 
+    4px 0 0 #008800,
+    0 4px 0 #008800,
+    -4px 0 0 #008800,
+    0 -4px 0 #008800,
+    /* Сплошная чёрная тень */
+    6px 0 0 #000, 6px 2px 0 #000, 6px 4px 0 #000, 6px 6px 0 #000,
+    0 6px 0 #000, 2px 6px 0 #000, 4px 6px 0 #000;
+}
+
+@keyframes streakBounce {
+  0%, 100% { 
+    transform: rotate(15deg) translateY(0) scale(1);
+  }
+  50% { 
+    transform: rotate(15deg) translateY(-10px) scale(1.05);
+  }
+}
+
+.lever-container {
+  position: absolute;
+  right: -220px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slot-machine {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #2d1b4e;
+  border-radius: 0;
+  padding: 30px 50px;
+  border: 8px solid #ffd700;
+  position: relative;
+  min-width: 650px;
+  max-width: 800px;
+  box-shadow: 
+    inset -6px -6px 0 #1a0a2e,
+    inset 6px 6px 0 #4a2c7a,
+    -4px -4px 0 #ffd700,
+    -4px 4px 0 #ffd700,
+    4px -4px 0 #ffd700,
+    4px 4px 0 #b8860b,
+    8px 0 0 #b8860b,
+    0 8px 0 #b8860b,
+    -8px 0 0 #b8860b,
+    0 -8px 0 #b8860b,
+    /* Сплошная чёрная тень справа-снизу */
+    12px 0 0 #000, 12px 2px 0 #000, 12px 4px 0 #000, 12px 6px 0 #000, 12px 8px 0 #000, 12px 10px 0 #000, 12px 12px 0 #000,
+    0 12px 0 #000, 2px 12px 0 #000, 4px 12px 0 #000, 6px 12px 0 #000, 8px 12px 0 #000, 10px 12px 0 #000;
+}
+
+.machine-top {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.title {
+  color: #ffd700;
+  font-size: 1.8rem;
+  text-shadow: 4px 4px 0 #806800;
+  letter-spacing: 3px;
+}
+
+.lights {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.light {
+  width: 12px;
+  height: 12px;
+  border-radius: 0;
+  background: #ffff00;
+  box-shadow: 2px 2px 0 #806800;
+  animation: blink 0.5s infinite alternate;
+}
+
+.light:nth-child(even) {
+  animation-delay: 0.25s;
+}
+
+.light.winning {
+  background: #00ff00;
+  box-shadow: 2px 2px 0 #004400;
+  animation: winBlink 0.2s infinite alternate;
+}
+
+.light.jackpot {
+  animation: jackpotBlink 0.1s infinite alternate;
+  background: #ff00ff;
+  box-shadow: 2px 2px 0 #800080;
+}
+
+@keyframes blink {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+@keyframes winBlink {
+  from { opacity: 0.3; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1.3); }
+}
+
+@keyframes jackpotBlink {
+  from { opacity: 0.5; transform: scale(0.7); background: #ff00ff; }
+  to { opacity: 1; transform: scale(1.4); background: #00ffff; }
+}
+
+.balance-display {
+  background: #1a0a2e;
+  border: 4px solid #ffd700;
+  border-radius: 0;
+  padding: 10px 30px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 
+    inset -3px -3px 0 #0d0518,
+    inset 3px 3px 0 #2d1b4e,
+    -3px -3px 0 #ffd700,
+    3px 3px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    6px 0 0 #000, 6px 2px 0 #000, 6px 4px 0 #000, 6px 6px 0 #000,
+    0 6px 0 #000, 2px 6px 0 #000, 4px 6px 0 #000;
+}
+
+.balance-label {
+  color: #aaa;
+  font-size: 0.7rem;
+}
+
+.balance-value {
+  color: #00ff00;
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 0 #004400;
+}
+
+.machine-body {
+  background: #1a0a2e;
+  border-radius: 0;
+  padding: 25px;
+  border: 4px solid #ffd700;
+  box-shadow: 
+    inset -4px -4px 0 #0d0518,
+    inset 4px 4px 0 #2d1b4e,
+    -4px -4px 0 #ffd700,
+    4px 4px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    8px 0 0 #000, 8px 2px 0 #000, 8px 4px 0 #000, 8px 6px 0 #000, 8px 8px 0 #000,
+    0 8px 0 #000, 2px 8px 0 #000, 4px 8px 0 #000, 6px 8px 0 #000;
+}
+
+.reels-container {
+  background: #0d0518;
+  border-radius: 0;
+  padding: 8px;
+  box-shadow: inset 4px 4px 0 #000;
+}
+
+.reels-frame {
+  display: flex;
+  gap: 20px;
+  background: #000;
+  padding: 20px 30px;
+  border-radius: 0;
+  border: 6px solid #ffd700;
+  box-shadow: 
+    inset 4px 4px 0 #333,
+    -4px -4px 0 #ffd700,
+    4px 4px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    8px 0 0 #000, 8px 2px 0 #000, 8px 4px 0 #000, 8px 6px 0 #000, 8px 8px 0 #000,
+    0 8px 0 #000, 2px 8px 0 #000, 4px 8px 0 #000, 6px 8px 0 #000;
+}
+
+.message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #fff;
+  min-height: 30px;
+  text-shadow: 2px 2px 0 #000;
+}
+
+.win-message {
+  color: #00ff00;
+  text-shadow: 2px 2px 0 #004400;
+  animation: pulse 0.5s infinite alternate;
+}
+
+.jackpot-message {
+  color: #ff00ff;
+  text-shadow: 2px 2px 0 #800080;
+  animation: jackpotPulse 0.2s infinite alternate;
+  font-size: 1.1rem;
+}
+
+.broke-message {
+  color: #ff0000;
+  text-shadow: 2px 2px 0 #800000;
+  animation: shake 0.5s infinite;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+@keyframes jackpotPulse {
+  from { transform: scale(1); color: #ff00ff; }
+  to { transform: scale(1.2); color: #00ffff; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.bet-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.bet-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 0;
+  border: 4px solid #ffd700;
+  background: #4a2c7a;
+  color: #ffd700;
+  font-size: 1.2rem;
+  font-family: 'Press Start 2P', cursive;
+  cursor: pointer;
+  transition: all 0.1s;
+  box-shadow: 
+    inset -2px -2px 0 #2d1b4e,
+    inset 2px 2px 0 #6b4a9e,
+    -2px -2px 0 #ffd700,
+    2px 2px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    4px 0 0 #000, 4px 2px 0 #000, 4px 4px 0 #000,
+    0 4px 0 #000, 2px 4px 0 #000;
+}
+
+.bet-btn:hover:not(:disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    6px 6px 0 #000,
+    inset -2px -2px 0 #2d1b4e,
+    inset 2px 2px 0 #6b4a9e;
+}
+
+.bet-btn:active:not(:disabled) {
+  transform: translate(2px, 2px);
+  box-shadow: 
+    2px 2px 0 #000,
+    inset -2px -2px 0 #2d1b4e,
+    inset 2px 2px 0 #6b4a9e;
+}
+
+.bet-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.bet-display {
+  background: #1a0a2e;
+  border: 4px solid #ffd700;
+  border-radius: 0;
+  padding: 10px 25px;
+  text-align: center;
+  box-shadow: 
+    inset -2px -2px 0 #0d0518,
+    inset 2px 2px 0 #2d1b4e,
+    -2px -2px 0 #ffd700,
+    2px 2px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    4px 0 0 #000, 4px 2px 0 #000, 4px 4px 0 #000,
+    0 4px 0 #000, 2px 4px 0 #000;
+}
+
+.bet-label {
+  display: block;
+  color: #aaa;
+  font-size: 0.5rem;
+  margin-bottom: 5px;
+}
+
+.bet-value {
+  color: #ffd700;
+  font-size: 1.3rem;
+  text-shadow: 2px 2px 0 #806800;
+}
+
+.reset-btn {
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  background: #4a2c7a;
+  border: 4px solid #ffd700;
+  border-radius: 0;
+  color: #ffd700;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  padding: 12px 15px;
+  cursor: pointer;
+  transition: all 0.1s;
+  box-shadow: 
+    -2px -2px 0 #ffd700,
+    2px 2px 0 #b8860b,
+    /* Сплошная чёрная тень */
+    4px 0 0 #000, 4px 2px 0 #000, 4px 4px 0 #000,
+    0 4px 0 #000, 2px 4px 0 #000;
+}
+
+.reset-btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 #000;
+}

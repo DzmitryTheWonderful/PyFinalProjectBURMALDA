@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background: #1a0a2e;
+  background-image: 
+    linear-gradient(rgba(138, 43, 226, 0.1) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(138, 43, 226, 0.1) 2px, transparent 2px);
+  background-size: 20px 20px;
+  min-height: 100vh;
+  overflow: hidden;
+  image-rendering: pixelated;
+}
+
+.app {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
